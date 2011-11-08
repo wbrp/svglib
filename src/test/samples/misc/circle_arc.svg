@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg font-size="18px" font-family="serif" 
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="320"
+   height="300"
+   version="1.0">
+
+  <g>
+    <path
+       style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;"
+       d="M 87.999998,47.000002 L 78.333331,35.285716" />
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;"
+       d="M 285 150 A 135 135 0 1 1  15,150 A 135 135 0 1 1  285 150 z"
+       transform="translate(25,0)" />
+    <path
+       style="opacity:1;fill:#6aff86;fill-opacity:1;fill-rule:nonzero;stroke:#667bea;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;"
+       d="M 63.223676,253.416 A 135,135 0 0 1 63.223675,46.583998 L 150,150 z"
+       transform="translate(25,0)" />
+    <g>
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;"
+         d="M 135.21875,109.125 C 113.92493,132.6918 113.92493,168.08946 135.21875,191.65625 L 136.71875,190.3125 C 116.09191,167.48389 116.09192,133.29737 136.71875,110.46875 L 135.21875,109.125 z " />
+      <path
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:0.4pt;marker-start:none"
+         d="M 139.06491,106.37714 L 137.39353,114.19333 L 131.45767,108.82998 L 139.06491,106.37714 z " />
+      <path
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:0.4pt;marker-start:none"
+         d="M 139.06491,194.41907 L 131.45767,191.96623 L 137.39353,186.60287 L 139.06491,194.41907 z " />
+    </g>
+    <text x="135.5" y="156.70166">θ</text>
+    <g>
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;"
+         d="M 77.34375,44.5 C 12.155084,94.416071 12.145188,205.92999 78.21875,255.8125 L 79.4375,254.21875 C 14.510388,205.20176 14.518025,95.133695 78.5625,46.09375 L 77.34375,44.5 z " />
+      <path
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:0.4pt;marker-start:none"
+         d="M 81.609537,42.494162 L 78.547089,49.877103 L 73.683436,43.525341 L 81.609537,42.494162 z " />
+      <path
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:0.4pt;marker-start:none"
+         d="M 82.51236,257.79702 L 74.579411,256.81992 L 79.399631,250.43513 L 82.51236,257.79702 z " />
+    </g>
+    <path
+       style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1.99999988;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;"
+       d="M 88.000001,254 L 80.000001,264" />
+    <text x="16.0625" y="156.56104">L</text>
+    <path
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;"
+       d="M 176 150 A 1 1 0 1 1  174,150 A 1 1 0 1 1  176 150 z" />
+    <g>
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.99999988;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;"
+         d="M 182.0625,149 L 182.0625,151 L 304.1875,151 L 304.1875,149 L 182.0625,149 z " />
+      <path
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:0.4pt;marker-start:none"
+         d="M 177.43308,150 L 184.35308,146 L 184.35308,154 L 177.43308,150 z " />
+      <path
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:0.4pt;marker-start:none"
+         d="M 308.79252,150 L 301.87252,154 L 301.87252,146 L 308.79252,150 z " />
+    </g>
+    <text x="242.33936" y="146">r</text>
+    <text x="85.078125" y="108.12207">A</text>
+  </g>
+</svg>
