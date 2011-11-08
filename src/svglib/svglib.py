@@ -228,8 +228,12 @@ def plot_arc( sx, sy, rx, ry, x_axis_rotation, large, sweep, x, y ):
     ady = -sin( th1 ) * ry
 
     degreedelta = 1
-    startangle  = th0 if sweep else th1
-    endangle    = th1 if sweep else th0
+    if sweep:
+        startangle  = th0
+        endangle    = th1
+    else:
+        startangle  = th1
+        endangle    = th0
 
     while ( endangle < startangle ):
         endangle = endangle + 2 * pi
@@ -912,7 +916,8 @@ class Svg2RlgShapeConverter(SvgShapeConverter):
                 text = c.nodeValue
 
             elif c.nodeType == c.ELEMENT_NODE and c.nodeName == "tspan":
-                text = c.firstChild.nodeValue if c.firstChild else u''
+                text = u''
+                if c.firstChild: text = c.firstChild.nodeValue
                 y = attrConv.convertLength( c.getAttribute('y'), emSize=fsize )
                 x = attrConv.convertLength( c.getAttribute('x'), emSize=fsize )
                 dx += attrConv.convertLength( c.getAttribute('dx'), emSize=fsize )
