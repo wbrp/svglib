@@ -1049,13 +1049,6 @@ class Svg2RlgShapeConverter(SvgShapeConverter):
                 pts = pts + [x1,y1, x2,y2, xn,yn]
                 ops.append(_CURVETO)
 
-            # elliptical arc, absolute
-            elif op == 'A':
-                points = plot_arc( *pts[-2:]+nums )
-                for ax, ay in points:
-                    pts = pts + [ax, ay]
-                    ops.append(_LINETO)
-
             # quadratic bezier, relative
             elif op == 'q':
                 x0, y0 = pts[-2:]
@@ -1076,6 +1069,20 @@ class Svg2RlgShapeConverter(SvgShapeConverter):
                     convertQuadraticToCubicPath((x0,y0), (xi,yi), (xn,yn))
                 pts = pts + [x1,y1, x2,y2, xn,yn]
                 ops.append(_CURVETO)
+
+            # elliptical arc, absolute
+            elif op == 'A':
+                points = plot_arc( *pts[-2:]+nums )
+                for ax, ay in points:
+                    pts = pts + [ax, ay]
+                    ops.append(_LINETO)
+            # elliptical arc, relative
+            elif op == 'a':
+                xn, yn = nums[-2:]
+                points = plot_arc( *pts[-2:] + nums[:-2] + [pts[-2]+xn, pts[-1]+yn] )
+                for ax, ay in points:
+                    pts = pts + [ax, ay]
+                    ops.append(_LINETO)
 
             # close path
             elif op in ('Z', 'z'):
