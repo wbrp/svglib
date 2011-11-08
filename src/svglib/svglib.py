@@ -253,6 +253,9 @@ def plot_arc( sx, sy, rx, ry, x_axis_rotation, large, sweep, x, y ):
             y + ady + ry * sin(angle)
         ])
 
+    if not sweep:
+        points.reverse()
+
     return points
 
 
