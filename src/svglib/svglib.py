@@ -899,42 +899,54 @@ class Svg2RlgShapeConverter(SvgShapeConverter):
 
         ffamily = attrConv.findAttr(node, "font-family").encode("ASCII") or "Helvetica"
         ffamily = attrConv.convertFontFamily(ffamily)
-        fsize = attrConv.findAttr(node, "font-size").encode("ASCII") or "12"
-        fsize = attrConv.convertLength(fsize)
+        parent_fsize = attrConv.findAttr(node, "font-size").encode("ASCII") or "12"
+        parent_fsize = attrConv.convertLength(parent_fsize)
 
-        baseLines = { "sub":-fsize/2, "super":fsize/2, "baseline":0 }
+        baseLines = { "sub":-parent_fsize/2, "super":parent_fsize/2, "baseline":0 }
 
-        dx0 = attrConv.convertLength( getAttr('dx'), emSize=fsize )
-        dy0 = attrConv.convertLength( getAttr('dy'), emSize=fsize )
+        dx0 = attrConv.convertLength( getAttr('dx'), emSize=parent_fsize )
+        dy0 = attrConv.convertLength( getAttr('dy'), emSize=parent_fsize )
 
+        dx, dy = 0, 0
         for c in node.childNodes:
-            dx, dy = 0, 0
-            x, y = 0, 0
+
+            x, y = None, None
             baseLineShift = 0
+            fsize = parent_fsize
 
             if c.nodeType == c.TEXT_NODE:
                 text = c.nodeValue
 
             elif c.nodeType == c.ELEMENT_NODE and c.nodeName == "tspan":
+                fsize = attrConv.findAttr(c, "font-size").encode("ASCII") or parent_fsize
+                fsize = attrConv.convertLength(fsize)
                 text = u''
                 if c.firstChild: text = c.firstChild.nodeValue
-                y = attrConv.convertLength( c.getAttribute('y'), emSize=fsize )
-                x = attrConv.convertLength( c.getAttribute('x'), emSize=fsize )
+                y = c.getAttribute('y')
+                if y != '':
+                    y = attrConv.convertLength(y, emSize=fsize )
+                else:
+                    y = None
+                x = c.getAttribute('x')
+                if x != '':
+                    x = attrConv.convertLength(x, emSize=fsize )
+                else:
+                    x = None
                 dx += attrConv.convertLength( c.getAttribute('dx'), emSize=fsize )
                 dy += attrConv.convertLength( c.getAttribute('dy'), emSize=fsize )
                 baseLineShift = c.getAttribute("baseline-shift") or 0
                 if baseLineShift in baseLines:
                     baseLineShift = baseLines[baseLineShift]
                 elif baseLineShift:
-                    baseLineShift = attrConv.convertLength(baseLineShift, fsize, emSize=fsize)
+                    baseLineShift = attrConv.convertLength(baseLineShift, parent_fsize, emSize=fsize)
 
             elif c.nodeType == c.ELEMENT_NODE and c.nodeName != "tspan":
                 continue
 
             text = unicode(text).strip()
             shape = String(
-                (x0 + x) - (dx0 + dx) + sum(fragLengths),
-                (y0 + y) - (dy0 + dy) + baseLineShift,
+                x0 - (dx0 + dx) + sum(fragLengths) if x is None else x - (dx0 + dx),
+                y0 - (dy0 + dy) + baseLineShift if y is None else y - (dy0 + dy) + baseLineShift,
                 text
             )
             fragLengths.append(stringWidth(text, ffamily, fsize))
@@ -1238,21 +1250,18 @@ class Svg2RlgShapeConverter(SvgShapeConverter):
                     continue
                 for (svgAttrName, rlgAttr, func, default) in mapping:
                     try:
-                        svgAttrValue = ac.findAttr(node, svgAttrName) or default
+                        svgAttrValue = ac.findAttr(node, svgAttrName) or ("black" if shape.__class__ == String else default)
                         if svgAttrValue == "currentColor":
                             svgAttrValue = ac.findAttr(node.parentNode, "color") or default
                         meth = getattr(ac, func)
                         value = meth(svgAttrValue)
                         if svgAttrName in ("fill", "stroke") and svgAttrValue and (svgAttrValue != "none"):
                             opacity = ac.findAttr(node, '%s-opacity' % svgAttrName) or u"1"
-                            value.alpha = max( 0, min( float(opacity), 1 ) )
+                            alpha = max( 0, min( float(opacity), 1 ) )
+                            value = colors.Color(value.red, value.green, value.blue, alpha)
                         setattr(shape, rlgAttr, value)
                     except:
                         pass
-
-            if shape.__class__ == String:
-                svgAttr = ac.findAttr(node, "fill") or "black"
-                setattr(shape, "fillColor", ac.convertColor(svgAttr))
 
 
 def svg2rlg(path):
